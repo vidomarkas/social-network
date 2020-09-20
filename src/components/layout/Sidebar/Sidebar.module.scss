@@ -1,0 +1,15 @@
+.sidebar {
+  grid-area: sidebar;
+  background-color: rgb(22, 88, 175);
+  a {
+    color: #fff;
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      color: rgb(22, 88, 175);
+    }
+  }
+}
+
+ul {
+  list-style: none;
+}

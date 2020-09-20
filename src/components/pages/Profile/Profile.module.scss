@@ -1,0 +1,21 @@
+.profile {
+  display: flex;
+  &Info {
+    margin-left: 10px;
+    h2 {
+      margin-top: 0;
+    }
+  }
+}
+
+.backgroundImage {
+  height: 160px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profileImage {
+  height: 160px;
+  margin-top: 10px;
+}

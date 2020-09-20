@@ -1,0 +1,13 @@
+import React from "react";
+import s from "./Dialogs.module.scss";
+import { Link } from "react-router-dom";
+
+const DialogItem = (props) => {
+  return (
+    <div className={s.dialog + " " + s.active}>
+      <Link to={`/dialogs/${props.id}`}>{props.name}</Link>
+    </div>
+  );
+};
+
+export default DialogItem;
