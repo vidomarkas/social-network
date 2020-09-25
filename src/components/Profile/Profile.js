@@ -1,11 +1,10 @@
 import React from "react";
-import headerImg from "../../../assets/header.jpg";
-import profileImg from "../../../assets/profile-img.jpg";
-import { MyPosts } from "../../Posts/MyPosts";
-import { NewPost } from "../../Posts/NewPost";
+import headerImg from "../../assets/header.jpg";
+import profileImg from "../../assets/profile-img.jpg";
+import { MyPostsContainer } from "../Posts/MyPostsContainer";
 import s from "./Profile.module.scss";
 
-export const Profile = () => {
+export const Profile = (props) => {
   return (
     <>
       <div
@@ -24,8 +23,7 @@ export const Profile = () => {
         </div>
       </div>
       <div className="content__posts">
-        <NewPost />
-        <MyPosts />
+        <MyPostsContainer store={props.store} />
       </div>
     </>
   );

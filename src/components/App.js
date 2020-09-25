@@ -1,26 +1,33 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import s from "./App.module.scss";
+import { Header } from "./Header/Header";
+import { Sidebar } from "./Sidebar/Sidebar";
+import { Footer } from "./Footer/Footer";
+// import { Feed } from "./Feed/Feed";
+import { Profile } from "./Profile/Profile";
+import { DialogsContainer } from "./Dialogs/DialogsContainer";
 
-import "./App.scss";
-import { Header } from "./layout/Header/Header";
-import { Main } from "./layout/Main/Main";
-import { Sidebar } from "./layout/Sidebar/Sidebar";
-import { Footer } from "./layout/Footer/Footer";
-import { LandingPage } from "./pages/LandingPage/LandingPage";
-
-const App = () => {
+const App = (props) => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/landing" component={LandingPage} />
-        <div className="app-wrapper" path="/">
-          <Header />
-          <Sidebar />
-          <Main />
-          <Footer />
-        </div>
-      </Switch>
-    </Router>
+    <div className={s.appWrapper}>
+      <Header />
+      <Sidebar />
+      <Route path="/">
+        <main className={s.main}>
+          {/* <Route exact path="/feed" component={Feed} /> */}
+          <Route
+            path="/dialogs"
+            render={() => <DialogsContainer store={props.store} />}
+          />
+          <Route
+            path="/myprofile"
+            render={() => <Profile store={props.store} />}
+          />
+        </main>
+        <Footer />
+      </Route>
+    </div>
   );
 };
 

@@ -7,21 +7,21 @@ export const Sidebar = () => {
   return (
     <nav className={s.sidebar}>
       <ul>
-        <li>
+        {/* <li>
           <Link to="/feed">Feed</Link>
-        </li>
+        </li> */}
         <li>
-          <Link to="/messages">Messages</Link>
+          <Link to="/dialogs">Dialogs</Link>
         </li>
         <li>
           <Link to="/myprofile">My profile</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/friends">Friends</Link>
         </li>
         <li>
           <Link to="/settings">Settings</Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

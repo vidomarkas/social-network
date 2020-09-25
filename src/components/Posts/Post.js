@@ -1,5 +1,5 @@
 import React from "react";
 
-export const Post = () => {
-  return <li>Post 1</li>;
+export const Post = (props) => {
+  return <li>{props.message}</li>;
 };
