@@ -7,7 +7,6 @@ export const MyPosts = (props) => {
   const onAddPost = (e) => {
     e.preventDefault();
     props.addPost();
-    props.updateNewPostText("");
   };
 
   const onPostChange = (e) => {

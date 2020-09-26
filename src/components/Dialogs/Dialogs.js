@@ -5,21 +5,25 @@ import DialogItem from "./DialogItem";
 
 export const Dialogs = (props) => {
   const onSendMessage = () => {
-    props.onSendMessage();
+    props.sendMessage();
   };
   const onTextAreaUpdate = (e) => {
-    props.onTextAreaUpdate(e.target.value);
+    props.updateTextArea(e.target.value);
   };
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>
         {props.dialogsData.map((dialog) => (
-          <DialogItem name={dialog.name} id={dialog.id} />
+          <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} />
         ))}
       </div>
       <div className={s.messages}>
         {props.messagesData.map((message) => (
-          <Message message={message.message} likesCount={message.likesCount} />
+          <Message
+            message={message.message}
+            likesCount={message.likesCount}
+            key={message.id}
+          />
         ))}
         <div>
           <div>
