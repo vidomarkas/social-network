@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { Component } from "react";
 import avatar from "../../assets/man.svg";
+import styles from "./Users.module.scss";
 
 export class Users extends Component {
   componentDidMount() {
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`
+      )
       .then((response) => {
         this.props.setUsers(response.data.items);
+        this.props.setTotalUsersCount(response.data.totalCount);
       });
   }
 
@@ -21,9 +25,37 @@ export class Users extends Component {
   showMore = () => {
     this.props.setUsers();
   };
+
+  onPageChanged = (currentPage) => {
+    this.props.setCurrentPage(currentPage);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${currentPage}`
+      )
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+      });
+  };
   render() {
+    const { totalUsersCount, pageSize, currentPage } = this.props;
+    let pagesCount = Math.ceil(totalUsersCount / pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i);
+    }
     return (
       <>
+        <div className={styles.pagination}>
+          {pages.map((i) => (
+            <span
+              key={i}
+              className={currentPage === i ? styles.selectedPage : undefined}
+              onClick={() => this.onPageChanged(i)}
+            >
+              {i}
+            </span>
+          ))}
+        </div>
         <ul>
           {this.props.users.map((user) => (
             <li
@@ -60,9 +92,6 @@ export class Users extends Component {
               <div style={{ display: "flex" }}>
                 <div style={{ marginLeft: "20px" }}>
                   <p>{user.name}</p>
-                  {/* <p>
-                   {user.location.city}, {user.location.country}
-                </p> */}
                 </div>
                 {user.status ? (
                   <div

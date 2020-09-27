@@ -1,0 +1,13 @@
+.pagination {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  span {
+    margin: 5px;
+    cursor: pointer;
+  }
+}
+
+.selectedPage {
+  color: red;
+}
