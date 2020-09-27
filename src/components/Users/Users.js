@@ -3,15 +3,13 @@ import React, { Component } from "react";
 import avatar from "../../assets/man.svg";
 
 export class Users extends Component {
-  getUsers = () => {
-    if (this.props.users.length === 0) {
-      axios
-        .get("https://social-network.samuraijs.com/api/1.0/users")
-        .then((response) => {
-          this.props.setUsers(response.data.items);
-        });
-    }
-  };
+  componentDidMount() {
+    axios
+      .get("https://social-network.samuraijs.com/api/1.0/users")
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+      });
+  }
 
   onFollowUser = (userId) => {
     this.props.followUser(userId);
@@ -26,7 +24,6 @@ export class Users extends Component {
   render() {
     return (
       <>
-        <button onClick={this.getUsers}>Get Users</button>
         <ul>
           {this.props.users.map((user) => (
             <li
