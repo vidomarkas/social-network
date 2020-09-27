@@ -1,40 +1,7 @@
 import { FOLLOW, UNFOLLOW, SET_USERS } from "./types";
 
 const initialState = {
-  users: [
-    {
-      id: 1,
-      fullName: "Viktoras",
-      location: { country: "Lithuania", city: "Klaipeda" },
-      status: "I like football",
-      avatarURL: "https://www.flaticon.com/svg/static/icons/svg/147/147144.svg",
-      followed: false,
-    },
-    {
-      id: 2,
-      fullName: "Andrew",
-      location: { country: "United Kingdom", city: "London" },
-      status: "React FTW!",
-      avatarURL: "https://www.flaticon.com/svg/static/icons/svg/147/147144.svg",
-      followed: false,
-    },
-    {
-      id: 3,
-      fullName: "Monica",
-      location: { country: "U.S.", city: "Los Angeles" },
-      status: "Life coach, ready to help",
-      avatarURL: "https://www.svgrepo.com/show/16242/woman.svg",
-      followed: true,
-    },
-    {
-      id: 4,
-      fullName: "Gloria",
-      location: { country: "France", city: "Paris" },
-      status: "Bonjour",
-      avatarURL: "https://www.svgrepo.com/show/16242/woman.svg",
-      followed: true,
-    },
-  ],
+  users: [],
 };
 
 const usersReducer = (state = initialState, action) => {
