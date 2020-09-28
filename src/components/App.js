@@ -7,7 +7,7 @@ import { Footer } from "./Footer/Footer";
 // import { Feed } from "./Feed/Feed";
 import { Profile } from "./Profile/Profile";
 import { DialogsContainer } from "./Dialogs/DialogsContainer";
-import { UsersContainer } from "./Users/UsersContainer";
+import UsersContainer from "./Users/UsersContainer";
 
 const App = (props) => {
   return (
