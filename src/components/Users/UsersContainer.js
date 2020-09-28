@@ -5,13 +5,16 @@ import {
   setUsersAC,
   setCurrentPageAC,
   setTotalUsersCountAC,
+  setLoadingAC,
 } from "../../redux/usersReducer";
 import { connect } from "react-redux";
 import { Users } from "./Users";
 import axios from "axios";
+import Loader from "../Loader/Loader";
 
 class UsersContainer extends Component {
   componentDidMount() {
+    this.props.setLoading(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`
@@ -19,6 +22,7 @@ class UsersContainer extends Component {
       .then((response) => {
         this.props.setUsers(response.data.items);
         this.props.setTotalUsersCount(response.data.totalCount);
+        this.props.setLoading(false);
       });
   }
 
@@ -31,25 +35,34 @@ class UsersContainer extends Component {
 
   onPageChanged = (currentPage) => {
     this.props.setCurrentPage(currentPage);
+    this.props.setLoading(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${currentPage}`
       )
       .then((response) => {
         this.props.setUsers(response.data.items);
+        this.props.setLoading(false);
       });
   };
   render() {
     return (
-      <Users
-        currentPage={this.props.currentPage}
-        users={this.props.users}
-        totalUsersCount={this.props.totalUsersCount}
-        pageSize={this.props.pageSize}
-        followUser={this.onFollowUser}
-        unfollowUser={this.onUnfollowUser}
-        onPageChanged={this.onPageChanged}
-      />
+      <>
+        {this.props.isLoading ? (
+          <Loader />
+        ) : (
+          <Users
+            currentPage={this.props.currentPage}
+            users={this.props.users}
+            totalUsersCount={this.props.totalUsersCount}
+            pageSize={this.props.pageSize}
+            followUser={this.onFollowUser}
+            unfollowUser={this.onUnfollowUser}
+            onPageChanged={this.onPageChanged}
+            isLoading={this.props.isLoading}
+          />
+        )}
+      </>
     );
   }
 }
@@ -59,6 +72,7 @@ const mapStateToProps = (state) => ({
   pageSize: state.usersPage.pageSize,
   totalUsersCount: state.usersPage.totalUsersCount,
   currentPage: state.usersPage.currentPage,
+  isLoading: state.usersPage.isLoading,
 });
 const mapDispatchToProps = (dispatch) => ({
   followUser: (userId) => dispatch(followAC(userId)),
@@ -66,6 +80,7 @@ const mapDispatchToProps = (dispatch) => ({
   setUsers: (users) => dispatch(setUsersAC(users)),
   setCurrentPage: (page) => dispatch(setCurrentPageAC(page)),
   setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
+  setLoading: (loading) => dispatch(setLoadingAC(loading)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

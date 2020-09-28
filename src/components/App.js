@@ -4,7 +4,7 @@ import s from "./App.module.scss";
 import { Header } from "./Header/Header";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
-// import { Feed } from "./Feed/Feed";
+import { Feed } from "./Feed/Feed";
 import { Profile } from "./Profile/Profile";
 import { DialogsContainer } from "./Dialogs/DialogsContainer";
 import UsersContainer from "./Users/UsersContainer";
@@ -16,7 +16,7 @@ const App = (props) => {
       <Sidebar />
       <Route path="/">
         <main className={s.main}>
-          {/* <Route exact path="/feed" component={Feed} /> */}
+          <Route exact path="/feed" component={Feed} />
           <Route path="/dialogs" render={() => <DialogsContainer />} />
           <Route path="/myprofile" render={() => <Profile />} />
           <Route path="/users" render={() => <UsersContainer />} />

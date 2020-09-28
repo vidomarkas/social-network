@@ -1,12 +1,13 @@
 import React from "react";
 import avatar from "../../assets/man.svg";
-import styles from "./Users.module.scss";
+import Pagination from "../Pagination/Pagination";
 
 export const Users = ({
   currentPage,
   users,
   totalUsersCount,
   pageSize,
+
   unfollowUser,
   followUser,
   onPageChanged,
@@ -16,73 +17,72 @@ export const Users = ({
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+
   return (
     <>
-      <div className={styles.pagination}>
-        {pages.map((i) => (
-          <span
-            key={i}
-            className={currentPage === i ? styles.selectedPage : undefined}
-            onClick={() => onPageChanged(i)}
-          >
-            {i}
-          </span>
-        ))}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Pagination
+          total={pagesCount}
+          current={currentPage}
+          onChange={onPageChanged}
+        />
       </div>
-      <ul>
-        {users.map((user) => (
-          <li
-            key={user.id}
-            style={{
-              border: "2px solid rgb(22, 88, 175)",
-              marginBottom: "10px",
-              display: "flex",
-              padding: "10px",
-            }}
-          >
-            <div>
-              {user.photos.small ? (
-                <img src={user.photos.small} alt={user.name + " photo"} />
-              ) : (
-                <img
-                  style={{ height: "40px", margin: "20px 10px" }}
-                  src={avatar}
-                  alt="avatar"
-                />
-              )}
+      <>
+        <ul>
+          {users.map((user) => (
+            <li
+              key={user.id}
+              style={{
+                border: "2px solid rgb(22, 88, 175)",
+                marginBottom: "10px",
+                display: "flex",
+                padding: "10px",
+              }}
+            >
               <div>
-                {user.followed ? (
-                  <button onClick={() => unfollowUser(user.id)}>
-                    Unfollow
-                  </button>
+                {user.photos.small ? (
+                  <img src={user.photos.small} alt={user.name + " photo"} />
                 ) : (
-                  <button onClick={() => followUser(user.id)}>Follow</button>
+                  <img
+                    style={{ height: "40px", margin: "20px 10px" }}
+                    src={avatar}
+                    alt="avatar"
+                  />
                 )}
-              </div>
-            </div>
-            <div style={{ display: "flex" }}>
-              <div style={{ marginLeft: "20px" }}>
-                <p>{user.name}</p>
-              </div>
-              {user.status ? (
-                <div
-                  style={{
-                    border: "1px solid #eee",
-                    borderRadius: "10px",
-                    padding: "10px",
-                    marginLeft: "30px",
-                    display: "flex",
-                    alignItems: "center",
-                    height: "40px",
-                  }}
-                >
-                  <p>{user.status}</p>
+                <div>
+                  {user.followed ? (
+                    <button onClick={() => unfollowUser(user.id)}>
+                      Unfollow
+                    </button>
+                  ) : (
+                    <button onClick={() => followUser(user.id)}>Follow</button>
+                  )}
                 </div>
-              ) : null}
-            </div>
-          </li>
-        ))}
-      </ul>
+              </div>
+              <div style={{ display: "flex" }}>
+                <div style={{ marginLeft: "20px" }}>
+                  <p>{user.name}</p>
+                </div>
+                {user.status ? (
+                  <div
+                    style={{
+                      border: "1px solid #eee",
+                      borderRadius: "10px",
+                      padding: "10px",
+                      marginLeft: "30px",
+                      display: "flex",
+                      alignItems: "center",
+                      height: "40px",
+                    }}
+                  >
+                    <p>{user.status}</p>
+                  </div>
+                ) : null}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </>
     </>
   );
 };

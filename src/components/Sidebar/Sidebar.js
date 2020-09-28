@@ -7,9 +7,9 @@ export const Sidebar = () => {
   return (
     <nav className={s.sidebar}>
       <ul>
-        {/* <li>
+        <li>
           <Link to="/feed">Feed</Link>
-        </li> */}
+        </li>
         <li>
           <Link to="/dialogs">Dialogs</Link>
         </li>
