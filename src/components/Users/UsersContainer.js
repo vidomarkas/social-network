@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {
-  followAC,
-  unfollowAC,
-  setUsersAC,
-  setCurrentPageAC,
-  setTotalUsersCountAC,
-  setLoadingAC,
+  followUser,
+  unfollowUser,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  setLoading,
 } from "../../redux/usersReducer";
 import { connect } from "react-redux";
 import { Users } from "./Users";
@@ -74,13 +74,20 @@ const mapStateToProps = (state) => ({
   currentPage: state.usersPage.currentPage,
   isLoading: state.usersPage.isLoading,
 });
-const mapDispatchToProps = (dispatch) => ({
-  followUser: (userId) => dispatch(followAC(userId)),
-  unfollowUser: (userId) => dispatch(unfollowAC(userId)),
-  setUsers: (users) => dispatch(setUsersAC(users)),
-  setCurrentPage: (page) => dispatch(setCurrentPageAC(page)),
-  setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
-  setLoading: (loading) => dispatch(setLoadingAC(loading)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   followUser: (userId) => dispatch(followAC(userId)),
+//   unfollowUser: (userId) => dispatch(unfollowAC(userId)),
+//   setUsers: (users) => dispatch(setUsersAC(users)),
+//   setCurrentPage: (page) => dispatch(setCurrentPageAC(page)),
+//   setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
+//   setLoading: (loading) => dispatch(setLoadingAC(loading)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  followUser,
+  unfollowUser,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  setLoading,
+})(UsersContainer);
