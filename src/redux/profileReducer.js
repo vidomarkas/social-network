@@ -1,4 +1,4 @@
-import { UPDATE_NEW_POST_TEXT, ADD_NEW_POST } from "./types";
+import { UPDATE_NEW_POST_TEXT, ADD_NEW_POST, SET_PROFILE } from "./types";
 
 const initialState = {
   posts: [
@@ -8,6 +8,7 @@ const initialState = {
     { id: 4, message: "This is a post number 4" },
   ],
   newPostText: "",
+  profile: null,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -28,14 +29,17 @@ const profileReducer = (state = initialState, action) => {
         posts: [...state.posts, newPost],
         newPostText: "",
       };
+    case SET_PROFILE:
+      return { ...state, profile: action.profile };
 
     default:
       return state;
   }
 };
 
-export const addPostCreator = () => ({ type: ADD_NEW_POST });
-export const updateNewPostTextCreator = (text) => ({
+export const addPost = () => ({ type: ADD_NEW_POST });
+export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
+export const updateNewPostText = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   payload: text,
 });

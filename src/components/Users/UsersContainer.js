@@ -74,14 +74,6 @@ const mapStateToProps = (state) => ({
   currentPage: state.usersPage.currentPage,
   isLoading: state.usersPage.isLoading,
 });
-// const mapDispatchToProps = (dispatch) => ({
-//   followUser: (userId) => dispatch(followAC(userId)),
-//   unfollowUser: (userId) => dispatch(unfollowAC(userId)),
-//   setUsers: (users) => dispatch(setUsersAC(users)),
-//   setCurrentPage: (page) => dispatch(setCurrentPageAC(page)),
-//   setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
-//   setLoading: (loading) => dispatch(setLoadingAC(loading)),
-// });
 
 export default connect(mapStateToProps, {
   followUser,

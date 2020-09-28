@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import avatar from "../../assets/man.svg";
 import Pagination from "../Pagination/Pagination";
 
@@ -40,15 +41,21 @@ export const Users = ({
               }}
             >
               <div>
-                {user.photos.small ? (
-                  <img src={user.photos.small} alt={user.name + " photo"} />
-                ) : (
-                  <img
-                    style={{ height: "40px", margin: "20px 10px" }}
-                    src={avatar}
-                    alt="avatar"
-                  />
-                )}
+                <Link to={"/profile/" + user.id}>
+                  {user.photos.small ? (
+                    <img
+                      style={{ height: "40px", margin: "20px 10px" }}
+                      src={user.photos.small}
+                      alt={user.name + " photo"}
+                    />
+                  ) : (
+                    <img
+                      style={{ height: "40px", margin: "20px 10px" }}
+                      src={avatar}
+                      alt="avatar"
+                    />
+                  )}
+                </Link>
                 <div>
                   {user.followed ? (
                     <button onClick={() => unfollowUser(user.id)}>
