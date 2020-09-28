@@ -1,4 +1,9 @@
-import { UPDATE_NEW_POST_TEXT, ADD_NEW_POST, SET_PROFILE } from "./types";
+import {
+  UPDATE_NEW_POST_TEXT,
+  ADD_NEW_POST,
+  SET_PROFILE,
+  SET_PROFILE_LOADING,
+} from "./types";
 
 const initialState = {
   posts: [
@@ -9,6 +14,7 @@ const initialState = {
   ],
   newPostText: "",
   profile: null,
+  isLoading: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -31,7 +37,8 @@ const profileReducer = (state = initialState, action) => {
       };
     case SET_PROFILE:
       return { ...state, profile: action.profile };
-
+    case SET_PROFILE_LOADING:
+      return { ...state, isLoading: action.isLoading };
     default:
       return state;
   }
@@ -42,6 +49,10 @@ export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
 export const updateNewPostText = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   payload: text,
+});
+export const setProfileLoading = (isLoading) => ({
+  type: SET_PROFILE_LOADING,
+  isLoading,
 });
 
 export default profileReducer;

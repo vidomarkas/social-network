@@ -4,7 +4,7 @@ import {
   SET_USERS,
   SET_CURRENT_PAGE,
   SET_TOTAL_USERS_COUNT,
-  SET_LOADING,
+  SET_USERS_LOADING,
 } from "./types";
 
 const initialState = {
@@ -43,7 +43,7 @@ const usersReducer = (state = initialState, action) => {
       return { ...state, currentPage: action.page };
     case SET_TOTAL_USERS_COUNT:
       return { ...state, totalUsersCount: action.count };
-    case SET_LOADING:
+    case SET_USERS_LOADING:
       return { ...state, isLoading: action.loading };
     default:
       return state;
@@ -54,7 +54,7 @@ export const followUser = (userId) => ({ type: FOLLOW, userId });
 export const unfollowUser = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page });
-export const setLoading = (loading) => ({ type: SET_LOADING, loading });
+export const setLoading = (loading) => ({ type: SET_USERS_LOADING, loading });
 export const setTotalUsersCount = (count) => ({
   type: SET_TOTAL_USERS_COUNT,
   count,
