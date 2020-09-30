@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import s from "./App.module.scss";
-import { Header } from "./Header/Header";
+import HeaderContainer from "./Header/HeaderContainer";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
 import { Feed } from "./Feed/Feed";
@@ -12,7 +12,7 @@ import UsersContainer from "./Users/UsersContainer";
 const App = (props) => {
   return (
     <div className={s.appWrapper}>
-      <Header />
+      <HeaderContainer />
       <Sidebar />
       <Route path="/">
         <main className={s.main}>
