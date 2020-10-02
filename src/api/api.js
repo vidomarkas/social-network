@@ -14,8 +14,6 @@ export const usersAPI = {
       .get(`users?count=${pageSize}&page=${currentPage}`)
       .then((response) => response.data);
   },
-};
-export const followAPI = {
   followUser(userId) {
     return instance.post(`follow/${userId}`).then((response) => response.data);
   },

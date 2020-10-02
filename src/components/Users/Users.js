@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import avatar from "../../assets/man.svg";
 import Pagination from "../Pagination/Pagination";
-import { followAPI } from "../../api/api";
 
 export const Users = ({
   currentPage,
@@ -13,7 +12,6 @@ export const Users = ({
   followUser,
   onPageChanged,
   followingInProgress,
-  toggleFollowingProgress,
 }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
@@ -65,14 +63,7 @@ export const Users = ({
                         (id) => id === user.id
                       )}
                       onClick={() => {
-                        toggleFollowingProgress(true, user.id);
-                        followAPI.unfollowUser(user.id).then((response) => {
-                          toggleFollowingProgress(false, user.id);
-                          console.log(response);
-                          if (response.resultCode === 0) {
-                            unfollowUser(user.id);
-                          }
-                        });
+                        unfollowUser(user.id);
                       }}
                     >
                       Unfollow
@@ -83,15 +74,7 @@ export const Users = ({
                         (id) => id === user.id
                       )}
                       onClick={() => {
-                        toggleFollowingProgress(true, user.id);
-                        followAPI.followUser(user.id).then((response) => {
-                          toggleFollowingProgress(false, user.id);
-                          console.log(response);
-
-                          if (response.resultCode === 0) {
-                            followUser(user.id);
-                          }
-                        });
+                        followUser(user.id);
                       }}
                     >
                       Follow
