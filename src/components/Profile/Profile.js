@@ -1,6 +1,5 @@
 import React from "react";
 import Loader from "../Loader/Loader";
-
 import { MyPostsContainer } from "../Posts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo";
 

@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 import {
   UPDATE_NEW_POST_TEXT,
   ADD_NEW_POST,
@@ -45,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const addPost = () => ({ type: ADD_NEW_POST });
-export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
+const setProfileSuccess = (profile) => ({ type: SET_PROFILE, profile });
 export const updateNewPostText = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   payload: text,
@@ -54,5 +56,19 @@ export const setProfileLoading = (isLoading) => ({
   type: SET_PROFILE_LOADING,
   isLoading,
 });
+
+export const getUserProfile = (userId) => (dispatch) => {
+  dispatch(setProfileLoading(true));
+  usersAPI
+    .getProfile(userId)
+    .then((data) => {
+      dispatch(setProfileSuccess(data));
+      dispatch(setProfileLoading(false));
+    })
+    .catch((error) => {
+      console.error(error);
+      dispatch(setProfileLoading(false));
+    });
+};
 
 export default profileReducer;
