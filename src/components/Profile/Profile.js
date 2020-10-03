@@ -3,7 +3,7 @@ import Loader from "../Loader/Loader";
 import { MyPostsContainer } from "../Posts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo";
 
-export const Profile = ({ profile, isLoading }) => {
+export const Profile = ({ profile, isLoading, isAuth }) => {
   if (!profile && isLoading) {
     return <Loader />;
   } else if (!profile && !isLoading) {

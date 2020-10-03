@@ -10,6 +10,7 @@ export const Dialogs = (props) => {
   const onTextAreaUpdate = (e) => {
     props.updateTextArea(e.target.value);
   };
+
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>
