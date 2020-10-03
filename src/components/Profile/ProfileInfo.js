@@ -1,18 +1,14 @@
 import React from "react";
-import headerImg from "../../assets/header.jpg";
 import avatar from "../../assets/man.svg";
 import s from "./Profile.module.scss";
+import Loader from "../Loader/Loader";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = ({ profile }) => {
   return (
     <>
-      {profile && (
+      {profile ? (
         <>
-          <div
-            style={{ backgroundImage: `url(${headerImg})` }}
-            className={s.backgroundImage}
-          ></div>
-
           <div className={s.profile}>
             <img
               className={s.profileImage}
@@ -21,11 +17,14 @@ const ProfileInfo = ({ profile }) => {
             />
             <div className={s.profileInfo}>
               <h1>{profile.fullName}</h1>
+              <ProfileStatus status="helloooo" />
               <p>{profile.aboutMe}</p>
+
               {profile.lookingForAJob ? (
                 <p>Open for job opportunities</p>
               ) : null}
               {<p>{profile.lookingForAJobDescription}</p>}
+
               <p style={{ fontWeight: "bold" }}>Ways to contact:</p>
               <ul>
                 {Object.keys(profile.contacts).map((contact, i) =>
@@ -45,6 +44,8 @@ const ProfileInfo = ({ profile }) => {
             </div>
           </div>
         </>
+      ) : (
+        <Loader />
       )}
     </>
   );

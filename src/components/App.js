@@ -6,7 +6,7 @@ import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
 import { Feed } from "./Feed/Feed";
 import ProfileContainer from "./Profile/ProfileContainer";
-import { DialogsContainer } from "./Dialogs/DialogsContainer";
+import DialogsContainer from "./Dialogs/DialogsContainer";
 import UsersContainer from "./Users/UsersContainer";
 import Login from "./Login/Login";
 
