@@ -4,7 +4,12 @@ import s from "./Profile.module.scss";
 import Loader from "../Loader/Loader";
 import ProfileStatus from "./ProfileStatus";
 
-const ProfileInfo = ({ profile }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isLoading }) => {
+  if (!profile && isLoading) {
+    return <Loader />;
+  } else if (!profile && !isLoading) {
+    return <div>Profile not found</div>;
+  }
   return (
     <>
       {profile ? (
@@ -17,7 +22,7 @@ const ProfileInfo = ({ profile }) => {
             />
             <div className={s.profileInfo}>
               <h1>{profile.fullName}</h1>
-              <ProfileStatus status="helloooo" />
+              <ProfileStatus status={status} updateStatus={updateStatus} />
               <p>{profile.aboutMe}</p>
 
               {profile.lookingForAJob ? (
