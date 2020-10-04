@@ -1,10 +1,11 @@
-import { usersAPI } from "../api/api";
+import { usersAPI, profileAPI } from "../api/api";
 
 import {
   UPDATE_NEW_POST_TEXT,
   ADD_NEW_POST,
   SET_PROFILE,
   SET_PROFILE_LOADING,
+  SET_STATUS,
 } from "./types";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   newPostText: "",
   profile: null,
   isLoading: false,
+  status: "",
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -41,13 +43,16 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, profile: action.profile };
     case SET_PROFILE_LOADING:
       return { ...state, isLoading: action.isLoading };
+    case SET_STATUS:
+      return { ...state, status: action.status };
     default:
       return state;
   }
 };
 
 export const addPost = () => ({ type: ADD_NEW_POST });
-const setProfileSuccess = (profile) => ({ type: SET_PROFILE, profile });
+export const setProfileSuccess = (profile) => ({ type: SET_PROFILE, profile });
+export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const updateNewPostText = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   payload: text,
@@ -57,18 +62,25 @@ export const setProfileLoading = (isLoading) => ({
   isLoading,
 });
 
+export const getStatus = (userId) => (dispatch) => {
+  profileAPI.getStatus(userId).then((response) => {
+    dispatch(setStatus(response.data));
+  });
+};
+export const updateStatus = (status) => (dispatch) => {
+  profileAPI.updateStatus(status).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(setStatus(status));
+    }
+  });
+};
+
 export const getUserProfile = (userId) => (dispatch) => {
   dispatch(setProfileLoading(true));
-  usersAPI
-    .getProfile(userId)
-    .then((data) => {
-      dispatch(setProfileSuccess(data));
-      dispatch(setProfileLoading(false));
-    })
-    .catch((error) => {
-      console.error(error);
-      dispatch(setProfileLoading(false));
-    });
+  usersAPI.getProfile(userId).then((data) => {
+    dispatch(setProfileSuccess(data));
+  });
+  dispatch(setProfileLoading(false));
 };
 
 export default profileReducer;

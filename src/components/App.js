@@ -10,7 +10,7 @@ import DialogsContainer from "./Dialogs/DialogsContainer";
 import UsersContainer from "./Users/UsersContainer";
 import Login from "./Login/Login";
 
-const App = (props) => {
+const App = () => {
   return (
     <div className={s.appWrapper}>
       <HeaderContainer />

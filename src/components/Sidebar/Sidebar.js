@@ -17,6 +17,7 @@ export const Sidebar = () => {
         <li>
           <Link to="/users">Find users</Link>
         </li>
+        <Link to={"/profile/" + 11754}>My profile</Link>
         {/* <li>
           <Link to="/friends">Friends</Link>
         </li>
