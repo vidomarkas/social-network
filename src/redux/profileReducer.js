@@ -1,7 +1,6 @@
 import { usersAPI, profileAPI } from "../api/api";
 
 import {
-  UPDATE_NEW_POST_TEXT,
   ADD_NEW_POST,
   SET_PROFILE,
   SET_PROFILE_LOADING,
@@ -15,7 +14,6 @@ const initialState = {
     { id: 3, message: "This is a post number 3" },
     { id: 4, message: "This is a post number 4" },
   ],
-  newPostText: "",
   profile: null,
   isLoading: false,
   status: "",
@@ -23,21 +21,15 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_NEW_POST_TEXT:
-      return {
-        ...state,
-        newPostText: action.payload,
-      };
     case ADD_NEW_POST:
       const newPost = {
         id: 5,
-        message: state.newPostText,
+        message: action.newPost,
         likesCount: 0,
       };
       return {
         ...state,
         posts: [...state.posts, newPost],
-        newPostText: "",
       };
     case SET_PROFILE:
       return { ...state, profile: action.profile };
@@ -50,13 +42,9 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPost = () => ({ type: ADD_NEW_POST });
+export const addPost = (newPost) => ({ type: ADD_NEW_POST, newPost });
 export const setProfileSuccess = (profile) => ({ type: SET_PROFILE, profile });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
-export const updateNewPostText = (text) => ({
-  type: UPDATE_NEW_POST_TEXT,
-  payload: text,
-});
 export const setProfileLoading = (isLoading) => ({
   type: SET_PROFILE_LOADING,
   isLoading,

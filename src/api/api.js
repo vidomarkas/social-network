@@ -44,4 +44,11 @@ export const authAPI = {
   authenticate() {
     return instance.get(`auth/me`).then((response) => response.data);
   },
+  login(formData) {
+    console.log("formData :>> ", formData);
+    return instance.post(`auth/login`, {
+      email: formData.login,
+      password: formData.password,
+    });
+  },
 };
