@@ -1,16 +1,37 @@
 import React from "react";
+import { reduxForm, Field } from "redux-form";
+import { connect } from "react-redux";
+import { login } from "../../redux/authReducer";
 
-const LoginForm = () => {
+const Login = (props) => {
+  const onSubmit = (formData) => {
+    props.login(formData);
+  };
   return (
-    <form>
+    <div>
+      <h1>login</h1>
+      <LoginReduxForm onSubmit={onSubmit} />
+    </div>
+  );
+};
+
+const LoginForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
       <div>
-        <input type="text" placeholder="login" />
+        <Field component="input" name="login" type="text" placeholder="login" />
       </div>
       <div>
-        <input type="password" placeholder="password" />
+        <Field
+          component="input"
+          name="password"
+          type="password"
+          placeholder="password"
+        />
       </div>
       <div>
-        <input type="checkbox" /> Remember me
+        <Field component="input" name="rememberMe" type="checkbox" /> Remember
+        me
       </div>
       <div>
         <button>Login</button>
@@ -19,13 +40,6 @@ const LoginForm = () => {
   );
 };
 
-const Login = () => {
-  return (
-    <div>
-      <h1>login</h1>
-      <LoginForm />
-    </div>
-  );
-};
+const LoginReduxForm = reduxForm({ form: "login" })(LoginForm);
 
-export default Login;
+export default connect(null, { login })(Login);
