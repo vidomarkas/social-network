@@ -1,7 +1,7 @@
 import React from "react";
 import avatar from "../../assets/man.svg";
 import s from "./Profile.module.scss";
-import Loader from "../Loader/Loader";
+import Loader from "../common/Loader/Loader";
 import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = ({ profile, status, updateStatus, isLoading }) => {

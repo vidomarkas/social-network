@@ -8,7 +8,7 @@ import {
 } from "../../redux/usersReducer";
 import { connect } from "react-redux";
 import { Users } from "./Users";
-import Loader from "../Loader/Loader";
+import Loader from "../common/Loader/Loader";
 
 class UsersContainer extends Component {
   componentDidMount() {
