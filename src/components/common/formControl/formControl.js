@@ -8,7 +8,9 @@ export const Textarea = (props) => {
     <div>
       <textarea
         {...input}
-        className={props.meta.touched && props.meta.error && styles.redBorder}
+        className={
+          props.meta.touched && props.meta.error ? styles.redBorder : null
+        }
       />
       {props.meta.touched &&
         ((props.meta.error && (
@@ -26,7 +28,9 @@ export const Input = ({ input, ...props }) => {
       <input
         {...input}
         {...props}
-        className={props.meta.touched && props.meta.error && styles.redBorder}
+        className={
+          props.meta.touched && props.meta.error ? styles.redBorder : null
+        }
       />
       {props.meta.touched &&
         ((props.meta.error && (
