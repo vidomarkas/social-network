@@ -16,7 +16,10 @@ export const Header = (props) => {
       </div>
       <div className={s.loginBlock}>
         {props.isAuthenticated ? (
-          <p>{props.login}</p>
+          <div style={{ display: "flex" }}>
+            <p>{props.login}</p>
+            <button onClick={() => props.logout()}>Logout</button>
+          </div>
         ) : (
           <Link to="/login">Login</Link>
         )}

@@ -17,6 +17,9 @@ class ProfileContainer extends Component {
     if (userId) {
       this.props.getUserProfile(userId);
       this.props.getStatus(userId);
+    } else {
+      this.props.getUserProfile(this.props.myId);
+      this.props.getStatus(this.props.myId);
     }
   }
   render() {
@@ -28,6 +31,7 @@ const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   isLoading: state.profilePage.isLoading,
   status: state.profilePage.status,
+  myId: state.auth.userId,
 });
 
 export default compose(

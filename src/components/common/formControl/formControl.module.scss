@@ -3,7 +3,11 @@
 }
 
 .redBorder {
-  input {
-    border: 2px solid red;
-  }
+  border: 2px solid red;
+}
+
+.formError {
+  border: 2px solid red;
+  color: red;
+  padding: 5px;
 }
