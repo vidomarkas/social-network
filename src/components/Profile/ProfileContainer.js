@@ -13,14 +13,15 @@ import { compose } from "redux";
 
 class ProfileContainer extends Component {
   componentDidMount() {
-    const userId = this.props.match.params.userId;
-    if (userId) {
-      this.props.getUserProfile(userId);
-      this.props.getStatus(userId);
-    } else {
-      this.props.getUserProfile(this.props.myId);
-      this.props.getStatus(this.props.myId);
+    let userId = this.props.match.params.userId;
+    if (!userId) {
+      userId = this.props.myId;
+      if (!userId) {
+        this.props.history.push("/login");
+      }
     }
+    this.props.getUserProfile(userId);
+    this.props.getStatus(userId);
   }
   render() {
     return <Profile {...this.props} />;
@@ -41,6 +42,5 @@ export default compose(
     getStatus,
     updateStatus,
   }),
-  withRouter,
-  withAuthRedirect
+  withRouter
 )(ProfileContainer);
