@@ -36,7 +36,7 @@ export const logoutAC = () => ({
 });
 
 export const authenticate = () => (dispatch) => {
-  authAPI.authenticate().then((response) => {
+  return authAPI.authenticate().then((response) => {
     if (response.resultCode === 0) {
       let { login, id, email } = response.data;
       dispatch(setAuthUserData(id, email, login));
