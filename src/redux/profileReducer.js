@@ -65,10 +65,11 @@ export const updateStatus = (status) => (dispatch) => {
 
 export const getUserProfile = (userId) => (dispatch) => {
   dispatch(setProfileLoading(true));
+  console.log("triggered");
   usersAPI.getProfile(userId).then((data) => {
     dispatch(setProfileSuccess(data));
+    dispatch(setProfileLoading(false));
   });
-  dispatch(setProfileLoading(false));
 };
 
 export default profileReducer;
