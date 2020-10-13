@@ -1,5 +1,6 @@
 import { authenticate } from "./authReducer";
 
+// Action types
 const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
 
 // Initial state

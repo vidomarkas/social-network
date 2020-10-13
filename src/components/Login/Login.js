@@ -7,11 +7,11 @@ import { required } from "../../utils/validators";
 import { Redirect } from "react-router-dom";
 import styles from "../common/formControl/formControl.module.scss";
 
-const Login = (props) => {
+const Login = ({ login, isAuth }) => {
   const onSubmit = (formData) => {
-    props.login(formData);
+    login(formData);
   };
-  if (props.isAuth) {
+  if (isAuth) {
     return <Redirect to="/profile" />;
   }
   return (
@@ -22,9 +22,9 @@ const Login = (props) => {
   );
 };
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           component={Input}
@@ -47,9 +47,9 @@ const LoginForm = (props) => {
         <Field component={Input} name="rememberMe" type="checkbox" />
         Remember me
       </div>
-      {props.error && (
+      {error && (
         <div className={styles.formError}>
-          <div>{props.error}</div>
+          <div>{error}</div>
         </div>
       )}
       <div>

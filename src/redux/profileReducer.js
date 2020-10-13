@@ -1,11 +1,13 @@
 import { usersAPI, profileAPI } from "../api/api";
 
+// Action types
 const ADD_NEW_POST = "profile/ADD_NEW_POST";
 const SET_PROFILE = "profile/SET_PROFILE";
 const SET_STATUS = "profile/SET_STATUS";
 const DELETE_POST = "profile/DELETE_POST";
 const SET_PROFILE_LOADING = "profile/SET_PROFILE_LOADING";
 
+// Initial state
 const initialState = {
   posts: [
     { id: 1, message: "This is a post" },
@@ -18,6 +20,7 @@ const initialState = {
   status: "",
 };
 
+// Reducer
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NEW_POST:
@@ -46,6 +49,7 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
+// Action creators
 export const addPost = (newPost) => ({ type: ADD_NEW_POST, newPost });
 export const deletePost = (id) => ({ type: DELETE_POST, id });
 export const setProfileSuccess = (profile) => ({ type: SET_PROFILE, profile });
@@ -55,25 +59,23 @@ export const setProfileLoading = (isLoading) => ({
   isLoading,
 });
 
-export const getStatus = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId).then((response) => {
-    dispatch(setStatus(response.data));
-  });
+// Thunk creators
+export const getStatus = (userId) => async (dispatch) => {
+  const response = await profileAPI.getStatus(userId);
+  dispatch(setStatus(response.data));
 };
-export const updateStatus = (status) => (dispatch) => {
-  profileAPI.updateStatus(status).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setStatus(status));
-    }
-  });
+export const updateStatus = (status) => async (dispatch) => {
+  const response = await profileAPI.updateStatus(status);
+  if (response.data.resultCode === 0) {
+    dispatch(setStatus(status));
+  }
 };
 
-export const getUserProfile = (userId) => (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch) => {
   dispatch(setProfileLoading(true));
-  usersAPI.getProfile(userId).then((data) => {
-    dispatch(setProfileSuccess(data));
-    dispatch(setProfileLoading(false));
-  });
+  const response = await usersAPI.getProfile(userId);
+  dispatch(setProfileSuccess(response));
+  dispatch(setProfileLoading(false));
 };
 
 export default profileReducer;

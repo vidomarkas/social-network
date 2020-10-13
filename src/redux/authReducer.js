@@ -1,7 +1,7 @@
 import { authAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
 
-// Constants
+// Action types
 const SET_USER_DATA = "auth/SET_USER_DATA";
 const LOGIN = "auth/LOGIN";
 const LOGOUT = "auth/LOGOUT";
