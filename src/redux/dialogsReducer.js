@@ -1,4 +1,4 @@
-import { SEND_MESSAGE } from "./types";
+const SEND_MESSAGE = "dialogs/SEND_MESSAGE";
 
 const initialState = {
   messagesData: [

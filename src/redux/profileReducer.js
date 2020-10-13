@@ -1,12 +1,10 @@
 import { usersAPI, profileAPI } from "../api/api";
 
-import {
-  ADD_NEW_POST,
-  SET_PROFILE,
-  SET_PROFILE_LOADING,
-  SET_STATUS,
-  DELETE_POST,
-} from "./types";
+const ADD_NEW_POST = "profile/ADD_NEW_POST";
+const SET_PROFILE = "profile/SET_PROFILE";
+const SET_STATUS = "profile/SET_STATUS";
+const DELETE_POST = "profile/DELETE_POST";
+const SET_PROFILE_LOADING = "profile/SET_PROFILE_LOADING";
 
 const initialState = {
   posts: [

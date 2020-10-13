@@ -9,18 +9,19 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-  getUsers(pageSize = 10, currentPage = 1) {
-    return instance
-      .get(`users?count=${pageSize}&page=${currentPage}`)
-      .then((response) => response.data);
+  async getUsers(pageSize = 10, currentPage = 1) {
+    const response = await instance.get(
+      `users?count=${pageSize}&page=${currentPage}`
+    );
+    return response.data;
   },
-  followUser(userId) {
-    return instance.post(`follow/${userId}`).then((response) => response.data);
+  async followUser(userId) {
+    const response = await instance.post(`follow/${userId}`);
+    return response.data;
   },
-  unfollowUser(userId) {
-    return instance
-      .delete(`follow/${userId}`)
-      .then((response) => response.data);
+  async unfollowUser(userId) {
+    const response = await instance.delete(`follow/${userId}`);
+    return response.data;
   },
   getProfile(userId) {
     console.warn("Obsolete method. Please use profileAPI");
@@ -29,8 +30,9 @@ export const usersAPI = {
 };
 
 export const profileAPI = {
-  getProfile(userId) {
-    return instance.get(`profile/${userId}`).then((response) => response.data);
+  async getProfile(userId) {
+    const response = await instance.get(`profile/${userId}`);
+    return response.data;
   },
   getStatus(userId) {
     return instance.get(`profile/status/${userId}`);
@@ -41,8 +43,9 @@ export const profileAPI = {
 };
 
 export const authAPI = {
-  authenticate() {
-    return instance.get(`auth/me`).then((response) => response.data);
+  async authenticate() {
+    const response = await instance.get(`auth/me`);
+    return response.data;
   },
   login({ login, password, rememberMe }) {
     return instance.post(`auth/login`, {
@@ -51,7 +54,8 @@ export const authAPI = {
       rememberMe,
     });
   },
-  logout() {
-    return instance.delete(`auth/login`).then((response) => response.data);
+  async logout() {
+    const response = await instance.delete(`auth/login`);
+    return response.data;
   },
 };

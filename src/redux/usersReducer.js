@@ -1,13 +1,12 @@
-import {
-  FOLLOW,
-  UNFOLLOW,
-  SET_USERS,
-  SET_CURRENT_PAGE,
-  SET_TOTAL_USERS_COUNT,
-  SET_USERS_LOADING,
-  TOGGLE_IS_FOLLOWING_PROGRESS,
-} from "./types";
 import { usersAPI } from "../api/api";
+
+const FOLLOW = "users/FOLLOW";
+const UNFOLLOW = "users/UNFOLLOW";
+const SET_USERS = "users/SET_USERS";
+const SET_CURRENT_PAGE = "users/SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "users/SET_TOTAL_USERS_COUNT";
+const TOGGLE_IS_FOLLOWING_PROGRESS = "users/TOGGLE_IS_FOLLOWING_PROGRESS";
+const SET_USERS_LOADING = "users/SET_USERS_LOADING";
 
 const initialState = {
   users: [],
