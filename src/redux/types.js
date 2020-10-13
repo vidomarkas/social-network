@@ -14,3 +14,4 @@ export const SET_STATUS = " SET_STATUS";
 export const LOGIN = " LOGIN";
 export const LOGOUT = " LOGOUT";
 export const INITIALIZED_SUCCESS = " INITIALIZED_SUCCESS";
+export const DELETE_POST = " DELETE_POST";

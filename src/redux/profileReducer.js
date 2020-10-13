@@ -5,6 +5,7 @@ import {
   SET_PROFILE,
   SET_PROFILE_LOADING,
   SET_STATUS,
+  DELETE_POST,
 } from "./types";
 
 const initialState = {
@@ -37,12 +38,18 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, isLoading: action.isLoading };
     case SET_STATUS:
       return { ...state, status: action.status };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== action.id),
+      };
     default:
       return state;
   }
 };
 
 export const addPost = (newPost) => ({ type: ADD_NEW_POST, newPost });
+export const deletePost = (id) => ({ type: DELETE_POST, id });
 export const setProfileSuccess = (profile) => ({ type: SET_PROFILE, profile });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const setProfileLoading = (isLoading) => ({
@@ -65,7 +72,6 @@ export const updateStatus = (status) => (dispatch) => {
 
 export const getUserProfile = (userId) => (dispatch) => {
   dispatch(setProfileLoading(true));
-  console.log("triggered");
   usersAPI.getProfile(userId).then((data) => {
     dispatch(setProfileSuccess(data));
     dispatch(setProfileLoading(false));
