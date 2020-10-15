@@ -20,30 +20,44 @@ import {
 
 class UsersContainer extends Component {
   componentDidMount() {
-    this.props.requestUsers(this.props.pageSize, this.props.currentPage);
+    const { requestUsers, pageSize, currentPage } = this.props;
+    requestUsers(pageSize, currentPage);
   }
 
   onPageChanged = (currentPage) => {
-    this.props.setCurrentPage(currentPage);
-    this.props.requestUsers(this.props.pageSize, this.props.currentPage);
+    const { requestUsers, setCurrentPage, pageSize } = this.props;
+    setCurrentPage(currentPage);
+    requestUsers(pageSize, currentPage);
   };
+
   render() {
+    const {
+      isLoading,
+      currentPage,
+      users,
+      totalUsersCount,
+      pageSize,
+      followUser,
+      unfollowUser,
+      toggleFollowingProgress,
+      followingInProgress,
+    } = this.props;
     return (
       <>
-        {this.props.isLoading ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <Users
-            currentPage={this.props.currentPage}
-            users={this.props.users}
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            followUser={this.props.followUser}
-            unfollowUser={this.props.unfollowUser}
+            currentPage={currentPage}
+            users={users}
+            totalUsersCount={totalUsersCount}
+            pageSize={pageSize}
+            followUser={followUser}
+            unfollowUser={unfollowUser}
             onPageChanged={this.onPageChanged}
-            isLoading={this.props.isLoading}
-            toggleFollowingProgress={this.props.toggleFollowingProgress}
-            followingInProgress={this.props.followingInProgress}
+            isLoading={isLoading}
+            toggleFollowingProgress={toggleFollowingProgress}
+            followingInProgress={followingInProgress}
           />
         )}
       </>
