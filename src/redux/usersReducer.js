@@ -13,7 +13,7 @@ const SET_USERS_LOADING = "users/SET_USERS_LOADING";
 // Initial state
 const initialState = {
   users: [],
-  pageSize: 5,
+  pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
   isLoading: false,
